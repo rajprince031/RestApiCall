@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class RestApiController {
 
     private final UserService userService;
-    
+
     public RestApiController(UserService userService) {
         this.userService = userService;
     }
@@ -39,5 +39,12 @@ public class RestApiController {
     @PostMapping("/user")
     public UserEntity user(@RequestBody UserDTO userDTO){
         return userService.createUser(userDTO);
+    }
+
+    //uc5 : Put method
+
+    @PutMapping("/user/{firstName}")
+    public String user(@PathVariable("firstName") String firstName,@PathParam("lastName") String lastName){
+        return "My Name is "+firstName+" "+lastName;
     }
 }
