@@ -20,4 +20,10 @@ public class RestApiController {
         return "Hello "+name;
     }
 
+    //uc3 : Using Path  to show Message
+    @GetMapping("/hello")
+    public String helloName(@PathParam("name") String name){
+        return "Hello "+name + " from BridgeLabz";
+    }
+
 }
