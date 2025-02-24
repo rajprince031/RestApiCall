@@ -1,12 +1,19 @@
 package com.restapicall.RESTApiCall.controller;
 
+import com.restapicall.RESTApiCall.dto.UserDTO;
+import com.restapicall.RESTApiCall.entity.UserEntity;
+import com.restapicall.RESTApiCall.service.UserService;
 import jakarta.websocket.server.PathParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestApiController {
+
+    private final UserService userService;
+    
+    public RestApiController(UserService userService) {
+        this.userService = userService;
+    }
 
     //uc1 : Base GET Request
     @GetMapping("/")
@@ -26,4 +33,11 @@ public class RestApiController {
         return "Hello "+name + " from BridgeLabz";
     }
 
+
+
+    //uc4 : Post Method
+    @PostMapping("/user")
+    public UserEntity user(@RequestBody UserDTO userDTO){
+        return userService.createUser(userDTO);
+    }
 }
